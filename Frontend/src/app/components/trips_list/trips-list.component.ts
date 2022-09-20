@@ -6,11 +6,11 @@ import {AppTask} from "../../common/app-task";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-trips_list',
+  templateUrl: './trips-list.component.html',
+  styleUrls: ['./trips-list.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class tripsListComponent implements OnInit {
 
   currentUser: AppUser | undefined;
   tasks!: AppTask[];

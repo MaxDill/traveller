@@ -48,7 +48,7 @@ public class UserController {
 
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterForm registerForm) {
-        AppUser user = new AppUser(null, registerForm.getName(), registerForm.getEmail(), registerForm.getPassword(), new ArrayList<Role>());
+        AppUser user = new AppUser(null, registerForm.getName(), registerForm.getEmail(), registerForm.getPassword(), new ArrayList<>(), new TreeSet<>());
         saveUser(user);
         assignRole(new RoleToUserForm(user.getUsername(), "ROLE_USER"));
         return ResponseEntity.status(CREATED).build();

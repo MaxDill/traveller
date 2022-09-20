@@ -5,15 +5,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.TreeSet;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Day {
+public class Day implements Comparable<Day> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,12 @@ public class Day {
 
     private String dayOfWeek;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    private Collection<Activity> activities = new ArrayList();
+    @ManyToMany(mappedBy="days")
+    private Collection<Activity> activities = new TreeSet<>();
+
+    @Override
+    public int compareTo(Day d) {
+        return this.getDate().compareTo(d.getDate());
+    }
 
 }

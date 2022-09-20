@@ -5,13 +5,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.Date;
+import java.util.TreeSet;
 
-@MappedSuperclass
+@Entity
+@Inheritance
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class Activity {
+public abstract class Activity implements Comparable<Activity> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +26,12 @@ public abstract class Activity {
 
     private Date endTime;
 
-    private Boolean onSeveralDays;
+    @ManyToMany(fetch = FetchType.LAZY)
+    private Collection<Day> days;
+
+    @Override
+    public int compareTo(Activity a) {
+        return this.getStartTime().compareTo(a.getEndTime());
+    }
 
 }

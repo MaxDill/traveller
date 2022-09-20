@@ -5,9 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.TreeSet;
 
 @Entity
 @Data
@@ -28,6 +28,6 @@ public class Trip {
     private Date endDate;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private Collection<Day> days = new ArrayList();
+    private Collection<Day> days = new TreeSet<>();
 
 }

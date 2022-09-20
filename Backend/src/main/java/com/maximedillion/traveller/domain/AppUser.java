@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.TreeSet;
 
 @Entity
 @Data
@@ -24,7 +25,10 @@ public class AppUser {
 
     private String password;
 
-    @ManyToMany(fetch = FetchType.EAGER) // Load the roles whenever the user is loaded
-    private Collection<Role> roles = new ArrayList<Role>();
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<Role> roles = new ArrayList();
+
+    @OneToMany(fetch = FetchType.LAZY)
+    private Collection<Trip> trips = new TreeSet<>();
 
 }

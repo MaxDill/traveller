@@ -11,6 +11,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.TreeSet;
 
 @SpringBootApplication
 public class TravellerApplication {
@@ -30,14 +31,16 @@ public class TravellerApplication {
 			userService.saveRole(new Role(null, "ROLE_USER"));
 			userService.saveRole(new Role(null, "ROLE_ADMIN"));
 
-			userService.saveUser(new AppUser(null, "Maxime", "maxdill", "pwd", new ArrayList<Role>()));
-			userService.saveUser(new AppUser(null, "Mathilde", "math", "pwd2", new ArrayList<Role>()));
-			userService.saveUser(new AppUser(null, "Jean", "jeanmich", "pwd3", new ArrayList<Role>()));
+			userService.saveUser(new AppUser(null, "Maxime", "maxdill", "pwd", new ArrayList<>(), new TreeSet<>()));
+			userService.saveUser(new AppUser(null, "Mathilde", "math", "pwd2", new ArrayList<>(), new TreeSet<>()));
+			userService.saveUser(new AppUser(null, "Jean", "jeanmich", "pwd3", new ArrayList<>(), new TreeSet<>()));
 
 			userService.addRoleToUser("maxdill", "ROLE_USER");
 			userService.addRoleToUser("maxdill", "ROLE_ADMIN");
 			userService.addRoleToUser("math", "ROLE_USER");
 			userService.addRoleToUser("jeanmich", "ROLE_USER");
+
+
 
 		};
 	}
